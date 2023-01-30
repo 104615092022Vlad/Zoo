@@ -24,7 +24,8 @@ public class Squirrel extends Animal{
         this.find = find;
     }
 
-    public Squirrel(String name) {
+    public Squirrel(String name, boolean escape) {
         super(name);
+        this.escape = escape;
     }
 }

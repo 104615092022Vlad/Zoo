@@ -53,7 +53,7 @@ public class Veterinarian extends Human {
         }
     }
 
-    public void inspectionSquirrel(Squirrel squirrel, Veterinarian vet, ZooKeeper keeper) {
+    public void inspectionSquirrel1(Squirrel squirrel, Veterinarian vet, ZooKeeper keeper) {
         System.out.println("Животное " + squirrel.getName() + " в карантине? " + squirrel.getToBeIsolated());
         System.out.println("Животное " + squirrel.getName() + " на месте? " + !squirrel.getEscape());
         if (squirrel.getEscape() == true) {
@@ -78,6 +78,26 @@ public class Veterinarian extends Human {
             }
         }
     }
+
+    public void inspectionSquirrel2(Squirrel squirrel, Veterinarian vet, ZooKeeper keeper) {
+        System.out.println("Животное " + squirrel.getName() + " в карантине? " + squirrel.getToBeIsolated());
+            System.out.println(vet.getNameHuman() + " осматривает " + squirrel.getName());
+            if (squirrel.getToBeIsolated() == true) {
+                vet.getFromIsolation(squirrel);
+                squirrel.bite(vet, squirrel);
+                System.out.println(vet.getNameHuman() + " был укушен? " + vet.getInjure());
+                if (vet.getInjure() == true) {
+                    vet.heal(vet);
+                }
+            } else {
+                vet.examination(squirrel);
+                squirrel.bite(vet, squirrel);
+                System.out.println(vet.getNameHuman() + " был укушен? " + vet.getInjure());
+                if (vet.getInjure() == true) {
+                    vet.heal(vet);
+                }
+            }
+        }
 
     public Veterinarian(String nameV) {
         super(nameV);
