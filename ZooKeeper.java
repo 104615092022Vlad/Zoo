@@ -1,6 +1,8 @@
+import java.util.Random;
+
 public class ZooKeeper extends Human {
     //кормление животных
-    public void feed (Animal animal) {
+    public void feed(Animal animal) {
         if (animal.getSatiety() == false) {
             animal.setSatiety(true);
             System.out.println("Животное " + animal.getName() + " накормлено");
@@ -8,7 +10,7 @@ public class ZooKeeper extends Human {
     }
 
     //вычёсывание кошек
-    public void groom (Cats cat) {
+    public void groom(Cats cat) {
         if (cat.getShaggy() == true) {
             cat.setShaggy(false);
             System.out.println("Животное " + cat.getName() + " вычесано");
@@ -16,7 +18,7 @@ public class ZooKeeper extends Human {
     }
 
     //мытьё бегемота
-    public void wash (Hippopotamus hippo) {
+    public void wash(Hippopotamus hippo) {
         if (hippo.getCleanliness() == false) {
             hippo.setCleanliness(true);
             System.out.println("Животное " + hippo.getName() + " вымыто");
@@ -24,14 +26,14 @@ public class ZooKeeper extends Human {
     }
 
     //поиск сбежавшей белки
-    public void search (Squirrel squirrel, Human human) {
-            System.out.println(human.getNameHuman() + " отправляется на поиски животного " + squirrel.getName());
-            if (squirrel.getFind() == true) {
-                squirrel.setEscape(false);
-                System.out.println(human.getNameHuman() + " возвращает животное " + squirrel.getName() + " в зоопарк");
-            } else {
-                System.out.println(human.getNameHuman() + " не нашёл животное " + squirrel.getName());
-            }
+    public void search(Squirrel squirrel, Human human) {
+        System.out.println(human.getNameHuman() + " отправляется на поиски животного " + squirrel.getName());
+        if (squirrel.getFind() == true) {
+            squirrel.setEscape(false);
+            System.out.println(human.getNameHuman() + " возвращает животное " + squirrel.getName() + " в зоопарк");
+        } else {
+            System.out.println(human.getNameHuman() + " не нашёл животное " + squirrel.getName());
+        }
     }
 
     public void inspectionCats(Cats cat, ZooKeeper keeper, Veterinarian vet) {
@@ -74,8 +76,22 @@ public class ZooKeeper extends Human {
         }
         System.out.println();
     }
+
+    public void secondInspection(Animal animal, ZooKeeper keeper, Veterinarian vet) {
+        Random r = new Random();
+        animal.setSatiety(r.nextBoolean());
+        System.out.println("Животное " + animal.getName() + " сыто? " + animal.getSatiety());
+        keeper.feed(animal);
+        animal.bite(keeper, animal);
+        System.out.println(keeper.getNameHuman() + " был укушен? " + keeper.getInjure());
+        if (keeper.getInjure() == true) {
+            vet.heal(keeper);
+        }
+        System.out.println();
+    }
     public ZooKeeper(String nameZK) {
         super(nameZK);
     }
 }
+
 
